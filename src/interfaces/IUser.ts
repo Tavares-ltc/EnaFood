@@ -1,4 +1,5 @@
 import { Document } from "mongoose";
+import { Address } from "./IAddress";
 
 export interface IUser extends Document {
     name: string;
@@ -6,12 +7,4 @@ export interface IUser extends Document {
     password: string;
     phone?: string;
     address: Address[];
-}
-
-export interface Address {
-state: string;
-city: string;
-street: string;
-zip: string;
-complement?: string;
 }
