@@ -1,11 +1,11 @@
 import { Document } from "mongoose";
 
 interface Products {
-    product_id: string,
-    ammount: number,
+  product_id: string;
+  ammount: number;
 }
 
-export interface IOrder extends Document {
+interface IOrder extends Document {
   user_id: string;
   products: Products[];
   payment_method: "credit" | "debit" | "vale-refeicao" | "pix";
@@ -14,3 +14,5 @@ export interface IOrder extends Document {
   total_price: number;
   date: Date;
 }
+
+export { IOrder };
