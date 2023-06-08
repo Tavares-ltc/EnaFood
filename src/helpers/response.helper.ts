@@ -36,7 +36,7 @@ function unprocessableRequestResponse(
 ) {
   return res.status(STATUS_CODE.UNPROCESSABLE_ENTITY).send(text);
 }
-function okResponse(res: Response, text: string = STATUS_TEXT.OK) {
+function okResponse(res: Response, text: string | object = STATUS_TEXT.OK) {
   return res.status(STATUS_CODE.OK).send(text);
 }
 

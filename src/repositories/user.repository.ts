@@ -1,4 +1,4 @@
-import { IUser, IUserData } from "../interfaces/IUser.js";
+import { IUserData } from "../interfaces/IUser.js";
 import User from "../models/user.model.js";
 
 async function getUserByEmail(email: string) {
@@ -8,6 +8,8 @@ async function getUserByEmail(email: string) {
 async function createUser(userData: IUserData){
  return User.create(userData)
 }
+
+
 
 const userRepository = {
   getUserByEmail,
