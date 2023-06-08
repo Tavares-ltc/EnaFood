@@ -9,6 +9,6 @@ const SessionSchema: Schema = new Schema({
     date: { type: Date, default: Date.now }
 })
 
-const User = mongoose.model<ISession>('Session', SessionSchema)
+const Session = mongoose.model<ISession>('Session', SessionSchema)
 
-export default User;
+export default Session;
