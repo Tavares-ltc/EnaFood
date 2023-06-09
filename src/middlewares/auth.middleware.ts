@@ -16,7 +16,6 @@ async function checkAuthorization(
     const token = authorization.replace("Bearer ", "");
   interface JwtPayload {
     userId: string;
-    date: string;
   }
   try {
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET) as JwtPayload;
