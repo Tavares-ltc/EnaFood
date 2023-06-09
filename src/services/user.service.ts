@@ -26,7 +26,6 @@ async function getUser(password: string, email: string) {
   const token = jwt.sign(
     {
       userId: user.id,
-      date: Date.now(),
     },
     process.env.TOKEN_SECRET
   );
