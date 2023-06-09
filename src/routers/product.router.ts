@@ -5,5 +5,7 @@ const productRouter = Router();
 
 productRouter
 .get("/products", productController.listProducts)
+.get("/products/:category", productController.listProductsByCategory)
+
 
 export { productRouter };

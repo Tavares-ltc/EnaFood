@@ -16,8 +16,24 @@ async function listProducts(req: Request, res: Response) {
   }
 }
 
-const productController = {
-    listProducts
+async function listProductsByCategory(req: Request, res: Response) {
+  const { category } = req.params;
+  let { page } = req.query;
+  if (!page) {
+    page = "1";
+  }
+  const pageNumber = Number(page);
+  try {
+    const productList = await productService.getProductsByCategory(category, pageNumber);
+    okResponse(res, productList);
+  } catch (error) {
+    serverErrorResponse(res);
+  }
 }
 
-export default productController
+const productController = {
+  listProducts,
+  listProductsByCategory
+};
+
+export default productController;

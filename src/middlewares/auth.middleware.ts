@@ -19,7 +19,6 @@ async function checkAuthorization(
   }
   try {
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET) as JwtPayload;
-      console.log(decoded)
       const userId = decoded.userId;
       const userToken = (await sessionRepository.findLastSessionByUserId(userId));
       if (!userToken || token !== userToken.token) {
