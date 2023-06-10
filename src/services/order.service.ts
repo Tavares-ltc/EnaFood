@@ -35,8 +35,6 @@ async function editOrder(
 ) {
   const orderRequested = await orderRepository.getOrderById(orderId);
   if (orderRequested.user_id != userId) {
-    console.log("id from db= " + orderRequested.user_id)
-    console.log("userId= " + userId)
     throw requestError;
   }
 
