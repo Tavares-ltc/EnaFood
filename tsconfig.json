@@ -4,7 +4,10 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "module": "es6"
+    "module": "es6",
+    "paths": {
+      "faker": ["./node_modules/faker"]
+    }
   },
   "ts-node": {
     "esm": true

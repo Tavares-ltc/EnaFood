@@ -1,14 +1,12 @@
 import { app } from "./app.js";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
+import { connectToDB } from "./database/mongodb.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
-const DATABASE_URI = process.env.DATABASE_URI || "mongodb://localhost/enafood";
 
-mongoose
-  .connect(DATABASE_URI)
+connectToDB()
   .then(() => {
     app.listen(process.env.PORT, () =>
       console.log("Server running on port " + PORT)

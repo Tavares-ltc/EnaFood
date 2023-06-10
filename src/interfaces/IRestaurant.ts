@@ -8,4 +8,11 @@ interface IRestaurant extends Document {
   phone: string;
 }
 
-export { IRestaurant };
+interface IRestaurantData {
+  name: string;
+  email: string;
+  address: Address;
+  phone: string;
+}
+
+export { IRestaurant, IRestaurantData };

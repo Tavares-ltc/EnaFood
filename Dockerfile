@@ -1,5 +1,5 @@
 # Usar uma imagem Node.js como base
-FROM node:latest
+FROM node:18
 
 # Definir o diretório de trabalho dentro do container
 WORKDIR /app
@@ -20,4 +20,5 @@ RUN npm run build
 EXPOSE 3000
 
 # Comando para iniciar o servidor
-CMD ["node", "./dist/server.js"]
+CMD ["npm","start"]
+
