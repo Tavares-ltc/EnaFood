@@ -1,4 +1,4 @@
-# EnaFood
+#  EnaFood :motor_scooter::hotdog::fries:
 
 A API EnaFood é um sistema escalável de delivery voltado para ramo alimentício. Com a API é possível obter produtos que estão disponíveis para compra tal como manipular os produtos da sacola (adicionando ou alterando quantidades).
 
