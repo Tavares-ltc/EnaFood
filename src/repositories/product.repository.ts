@@ -18,9 +18,15 @@ async function getProductsByCategory(category: string, pageNumber = 1) {
   return products;
 }
 
+async function getProductById(productId: string) {
+  const product = await Product.findOne({ _id: productId });
+  return product;
+}
+
 const productRepository = {
   getProducts,
   getProductsByCategory,
+  getProductById
 };
 
-export default productRepository
+export default productRepository;
