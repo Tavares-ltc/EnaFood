@@ -3,6 +3,7 @@ import {
   badRequestResponse,
   okResponse,
   serverErrorResponse,
+  unauthorizedRequestResponse,
 } from "../helpers/response.helper.js";
 import orderService from "../services/order.service.js";
 import { IOrderData } from "../interfaces/IOrder.js";
@@ -45,9 +46,35 @@ async function listOrders(req: Request, res: Response) {
   }
 }
 
+async function editOrder(req: Request, res: Response){
+  const { userId } = res.locals;
+  const { orderId } = req.params;
+  const { products, payment_method, delivery_address } = req.body;
+  const newOrder: Omit<IOrderData, "status" | "total_price" | "date"> = {
+    products,
+    payment_method,
+    delivery_address,
+    user_id: userId,
+  };
+
+
+  try {
+    const editedOrder = await orderService.editOrder(userId, orderId, newOrder)
+    okResponse(res, editedOrder)
+  } catch (error) {
+    if (error.name === "requestError") {
+      return unauthorizedRequestResponse(res);
+    }
+    serverErrorResponse(res);
+
+  }
+
+}
+
 const orderController = {
   createOrder,
   listOrders,
+  editOrder
 };
 
 export default orderController;

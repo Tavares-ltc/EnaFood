@@ -8,5 +8,6 @@ const orderRouter = Router();
 orderRouter
 .get("/order", checkAuthorization, orderController.listOrders)
 .post("/order", checkAuthorization, validateOrderCreationData, orderController.createOrder)
+.put("/order/:orderId", checkAuthorization, validateOrderCreationData, orderController.editOrder)
 export { orderRouter };
 
