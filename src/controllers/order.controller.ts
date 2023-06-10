@@ -7,6 +7,7 @@ import {
 } from "../helpers/response.helper.js";
 import orderService from "../services/order.service.js";
 import { IOrderData } from "../interfaces/IOrder.js";
+import { ORDER_STATUS } from "../helpers/order.helper.js";
 
 async function createOrder(req: Request, res: Response) {
   const { userId } = res.locals;
@@ -46,7 +47,7 @@ async function listOrders(req: Request, res: Response) {
   }
 }
 
-async function editOrder(req: Request, res: Response){
+async function editOrder(req: Request, res: Response) {
   const { userId } = res.locals;
   const { orderId } = req.params;
   const { products, payment_method, delivery_address } = req.body;
@@ -57,24 +58,41 @@ async function editOrder(req: Request, res: Response){
     user_id: userId,
   };
 
-
   try {
-    const editedOrder = await orderService.editOrder(userId, orderId, newOrder)
-    okResponse(res, editedOrder)
+    const editedOrder = await orderService.editOrder(userId, orderId, newOrder);
+    okResponse(res, editedOrder);
   } catch (error) {
     if (error.name === "requestError") {
       return unauthorizedRequestResponse(res);
     }
     serverErrorResponse(res);
-
   }
+}
 
+async function changeStatusToCreated(req: Request, res: Response) {
+  const { userId } = res.locals;
+  const { orderId } = req.params;
+
+  try {
+    const editedOrder = await orderService.changeOrderStatus(
+      userId,
+      orderId,
+      ORDER_STATUS.CREATED
+    );
+    okResponse(res, editedOrder);
+  } catch (error) {
+    if (error.name === "requestError") {
+      return unauthorizedRequestResponse(res);
+    }
+    serverErrorResponse(res);
+  }
 }
 
 const orderController = {
   createOrder,
   listOrders,
-  editOrder
+  editOrder,
+  changeStatusToCreated,
 };
 
 export default orderController;

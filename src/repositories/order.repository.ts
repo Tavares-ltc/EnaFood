@@ -1,4 +1,4 @@
-import { IOrderData } from "../interfaces/IOrder.js";
+import { IOrderData, IOrderStatus } from "../interfaces/IOrder.js";
 import Order from "../models/order.model.js";
 
 const pageSize = 50;
@@ -21,8 +21,15 @@ async function getOrderById(orderId: string) {
   return order;
 }
 
+async function changeOrderStatus(orderId: string, status: IOrderStatus) {
+  const orderDocument = await Order.findOne({ _id: orderId });
+  orderDocument.status = status;
+  await orderDocument.save();
+  return orderDocument;
+}
+
 async function editOrder(orderId: string, order: Omit<IOrderData, "date">) {
-  const orderDocument = await getOrderById(orderId)
+  const orderDocument = await getOrderById(orderId);
   Object.assign(orderDocument, order);
   await orderDocument.save();
   return orderDocument;
@@ -32,7 +39,8 @@ const orderRepository = {
   createOrder,
   getOrders,
   getOrderById,
-  editOrder
+  editOrder,
+  changeOrderStatus,
 };
 
 export default orderRepository;

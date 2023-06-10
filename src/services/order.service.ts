@@ -1,6 +1,6 @@
 import { requestError } from "../errors/request.error.js";
 import { ORDER_STATUS } from "../helpers/order.helper.js";
-import { IOrderData, IProducts } from "../interfaces/IOrder.js";
+import { IOrderData, IOrderStatus, IProducts } from "../interfaces/IOrder.js";
 import orderRepository from "../repositories/order.repository.js";
 import productRepository from "../repositories/product.repository.js";
 
@@ -50,6 +50,23 @@ async function editOrder(
   return newOrder;
 }
 
+async function changeOrderStatus(
+  userId: string,
+  orderId: string,
+  status: string
+) {
+  if (!isOrderStatusValid(status)) {
+    throw requestError;
+  }
+  const orderRequested = await orderRepository.getOrderById(orderId);
+  if (orderRequested.user_id != userId) {
+    throw requestError;
+  }
+
+  const orderEdited = await orderRepository.changeOrderStatus(orderId, status);
+  return orderEdited;
+}
+
 async function calculateTotalPrice(products: IProducts[]) {
   let totalPrice = 0;
   const requests = products.map(async (product) => {
@@ -64,16 +81,15 @@ async function calculateTotalPrice(products: IProducts[]) {
   return totalPrice;
 }
 
-type OrderStatus = (typeof ORDER_STATUS)[keyof typeof ORDER_STATUS];
-
-function isOrderStatusValid(status: string): status is OrderStatus {
-  return Object.values(ORDER_STATUS).includes(status as OrderStatus);
+function isOrderStatusValid(status: string): status is IOrderStatus {
+  return Object.values(ORDER_STATUS).includes(status as IOrderStatus);
 }
 
 const orderService = {
   createOrder,
   getOrders,
-  editOrder
+  editOrder,
+  changeOrderStatus,
 };
 
 export default orderService;
