@@ -17,7 +17,7 @@ async function signup(req: Request, res: Response) {
     await userService.createUser(userData);
     okResponse(res);
   } catch (error) {
-    if (error.name === "ConflictError") {
+    if (error.name === "conflictError") {
       return conflictResponse(res, "email already in use");
     }
     serverErrorResponse(res);
@@ -31,7 +31,7 @@ async function signin(req: Request, res: Response) {
     const user = await userService.getUser(password, email);
     okResponse(res, user);
   } catch (error: any) {
-    if (error.name === "RequestError") {
+    if (error.name === "requestError") {
       return unauthorizedRequestResponse(res, "Check email and password");
     }
     serverErrorResponse(res, error.message);

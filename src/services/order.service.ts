@@ -16,6 +16,13 @@ async function createOrder(
   };
   return await orderRepository.createOrder(order);
 }
+async function getOrders(userId: string, status:string = ORDER_STATUS.CREATING, page: number = 1) {
+  if(!isOrderStatusValid(status)){
+    throw requestError
+  }
+  const orders = await orderRepository.getOrders(userId, status, page);
+  return orders;
+}
 
 async function calculateTotalPrice(products: IProducts[]) {
   let totalPrice = 0;
@@ -31,8 +38,16 @@ async function calculateTotalPrice(products: IProducts[]) {
   return totalPrice;
 }
 
+type OrderStatus = typeof ORDER_STATUS[keyof typeof ORDER_STATUS];
+
+
+function isOrderStatusValid(status: string): status is OrderStatus {
+  return Object.values(ORDER_STATUS).includes(status as OrderStatus);
+}
+
 const orderService = {
-  createOrder
+  createOrder,
+  getOrders
 }
 
 export default orderService
