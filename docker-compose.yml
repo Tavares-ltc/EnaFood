@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - './src:/app/src'
+    depends_on:
+      - mongo
+    environment:
+      - PORT=3000
+      - DATABASE_URI=mongodb://mongo:27017/enafood
+      - TOKEN_SECRET=change_this_token
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
