@@ -2,7 +2,7 @@ import { IApplicationError } from "../interfaces/IError.js";
 
 function notFoundError(): IApplicationError {
   return {
-    name: "NotFoundError",
+    name: "notFoundError",
     message: "No result for this search!",
   };
 }
