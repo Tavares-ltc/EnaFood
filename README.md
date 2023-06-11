@@ -35,6 +35,9 @@ A API EnaFood é um sistema escalável de delivery voltado para ramo alimentíci
 - Jsonwebtoken:Jsonwebtoken é uma biblioteca para geração e verificação de tokens de autenticação JWT (JSON Web Tokens). Foi escolhido para criar sessões de login e gerar rotas autenticadas.
 - Joi: É uma biblioteca de validação de dados em JavaScript. Foi utilizado por conseguir dar um retorno mais rápido ao cliente de que existem erros no formato de envio.
 - Bcrypt: É uma biblioteca utilizada para criptografar senhas. Foi utilizado para que não fosse necessário salvar senhas de usuários no banco.
+- Jest: É uma biblioteca de testes. Foi utilizada para realizar testes de integração que garantem que o retorno das rotas testadas permanecerá igual durante futuras atualizações, ajudando a identificar erros.
+- Ts-Jest: Um pacote para utilizar o Jest com o typescript.
+- falso: Uma biblioteca para gerar dados falsos, tanto na criação do seed quando nos testes de integração.
 - Typecript(dev dependencie): Ë um superconjunto de JavaScript que adiciona recursos de tipagem estática ao código. Foi escolhido para ajudar a sustentar a escalabilidade do projeto, em vista de mais desenvolvedores trabalhando na api.
 - Ts-node(dev dependencie): Ts-node é um pacote que permite executar arquivos TypeScript diretamente no Node.js, sem a necessidade de compilar o código para JavaScript antes. Foi utilizado em conjunto com a tecnologia abaixo para agilizar o desenvolvimento.
 - Nodemon(dev dependencie):Nodemon é uma ferramenta que monitora alterações em arquivos durante o desenvolvimento de uma aplicação Node.js. Foi utilizado com a tecnologia acima para reiniciar a plicação asism que alterações fossem feitas no código.
