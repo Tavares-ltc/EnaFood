@@ -1,17 +1,17 @@
 import { Document } from "mongoose";
-import { Address } from "./IAddress";
+import { IAddress } from "./IAddress";
 
 interface IRestaurant extends Document {
   name: string;
   email: string;
-  address: Address;
+  address: IAddress;
   phone: string;
 }
 
 interface IRestaurantData {
   name: string;
   email: string;
-  address: Address;
+  address: IAddress;
   phone: string;
 }
 

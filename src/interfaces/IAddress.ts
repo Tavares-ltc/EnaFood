@@ -1,4 +1,4 @@
-interface Address {
+interface IAddress {
   state: string;
   city: string;
   street: string;
@@ -6,4 +6,4 @@ interface Address {
   complement?: string;
 }
 
-export { Address };
+export { IAddress };

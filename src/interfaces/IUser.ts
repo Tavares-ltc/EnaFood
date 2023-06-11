@@ -6,7 +6,7 @@ interface IUser extends Document {
   email: string;
   password: string;
   phone?: string;
-  address: Address[];
+  address: IAddress[];
 }
 
 interface IUserData {
@@ -14,7 +14,7 @@ interface IUserData {
   email: string;
   password: string;
   phone?: string;
-  address: Address[];
+  address: IAddress[];
 }
 
 export { IUser, IUserData };

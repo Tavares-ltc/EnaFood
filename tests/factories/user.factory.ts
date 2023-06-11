@@ -1,5 +1,4 @@
 import { randEmail, randFirstName, randPassword } from "@ngneat/falso";
-import { IUserData } from "../../src/interfaces/IUser.js";
 import User from "../../src/models/user.model.js";
 import { createRandAddress } from "../helpers.js";
 
