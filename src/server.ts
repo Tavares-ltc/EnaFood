@@ -1,12 +1,11 @@
-import { app } from "./app.js";
+import { app, init } from "./app.js";
 import dotenv from "dotenv";
-import { connectToDB } from "./database/mongodb.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-connectToDB()
+init()
   .then(() => {
     app.listen(process.env.PORT, () =>
       console.log("Server running on port " + PORT)
