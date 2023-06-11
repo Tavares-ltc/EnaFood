@@ -1,5 +1,5 @@
 import { Document } from "mongoose";
-import { Address } from "./IAddress";
+import { IAddress } from "./IAddress";
 
 interface IUser extends Document {
   name: string;
